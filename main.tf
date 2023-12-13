@@ -6,7 +6,7 @@ resource "null_resource" "copy_source" {
     command = <<EOF
 if [ ! -d "build" ]; then
   if [ ! -L "build" ]; then
-    curl -L https://github.com/Widen/cloudfront-auth/archive/master.zip --output cloudfront-auth-master.zip
+    curl -L https://github.com/hellosyndic/cloudfront-auth/archive/master.zip --output cloudfront-auth-master.zip
     unzip -q cloudfront-auth-master.zip -d build/
     mkdir build/cloudfront-auth-master/distributions
 
@@ -238,7 +238,7 @@ resource "aws_lambda_function" "default" {
   provider = aws.us-east-1
 
   description      = "Managed by Terraform"
-  runtime          = "nodejs12.x"
+  runtime          = "nodejs18.x"
   role             = aws_iam_role.lambda_role.arn
   filename         = local.lambda_filename
   function_name    = "cloudfront_auth"
